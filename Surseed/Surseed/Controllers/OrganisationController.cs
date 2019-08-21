@@ -30,6 +30,21 @@ namespace Surseed.Controllers
         }
 
 
+        void fill_OrganizationUserTypeList()
+        {
+            List<SelectListItem> OrgUsrTypeList = new List<SelectListItem>();
+            DataSet ds = dl.Inline_Process("Select * from [USR].[U14_OrganizationUserType]");
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+
+                SelectListItem item = new SelectListItem();
+                item.Text = ds.Tables[0].Rows[i]["OrganizationUserType"].ToString();
+                item.Value = ds.Tables[0].Rows[i]["OrganizationUserTypeId"].ToString();
+                OrgUsrTypeList.Add(item);
+            }
+            ViewBag.OrgUsrTypeList = OrgUsrTypeList;
+        }
+
         public ActionResult SignIn()
         {
 

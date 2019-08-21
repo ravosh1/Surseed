@@ -62,6 +62,25 @@ namespace Surseed.Models
             }
 
         }
+
+
+        public DataSet Inline_Process(String Query)
+        {
+
+            Property p = new Property();
+            SqlConnection con = new SqlConnection(p.Con);
+            SqlCommand cmd = new SqlCommand(Query, con);
+
+
+            con.Open();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            da.Dispose();
+            con.Dispose();
+            return ds;
+
+        }
         public DataSet MyDs_Process(String Storp)
         {
 
@@ -99,6 +118,19 @@ namespace Surseed.Models
             }
         }
 
+        public int usp_setOrganization(OrganizationModel.Resistraion p)
+        {
+            try
+            {
+                string[] paname = { "@OrganizationId", "@OrganizationName", "@OrganizationContactNumber", "@Address", "@City", "@State", "@Zip", "@EIN#", "@TAXID", "@OrganizationActive", "@OrganizationUserId", "@OrganizationUserTyepId", "@FirstName", "@LastName", "@Gender", "@Age", "@Phone", "@EmailId", "@OrganizationUserActive", "@Password" };
+                string[] pvalue = { p.OrganizationId.ToString(), p.OrganizationName, p.OrgContactNumber, p.Address, p.City, p.State, p.Zip, p.EIN, p.TAXID, p.OrganizationActive.ToString(), p.OrganizationUserId.ToString(), p.OrganizationUserTyepId, p.FirstName, p.LastName, p.Gender, p.Age, p.Phone, p.EmailId, p.OrganizationUserActive.ToString(), p.Password };
+                return Int_Process("[USR].[usp_setOrganization]", paname, pvalue);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public int INSERT_SHOPDETAILS_DETAILS(Property p)
         {
