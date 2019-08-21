@@ -207,7 +207,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Datalayer.cs" />
-    <Compile Include="Models\OrganisitaionModel.cs" />
+    <Compile Include="Models\OrganizationModel.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -820,6 +820,9 @@
     <Content Include="Views\Home\SignIn.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\Forgotpassword.cshtml" />
+    <Content Include="Views\Organisation\SignIn.cshtml" />
+    <Content Include="Views\Organisation\SignUp.cshtml" />
+    <Content Include="Views\Organisation\Forgotpassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
