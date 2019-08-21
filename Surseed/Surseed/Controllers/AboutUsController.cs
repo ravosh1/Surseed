@@ -11,7 +11,7 @@ namespace Surseed.Controllers
         // GET: AboutUs
         public ActionResult Index()
         {
-            return View();
+            return View(); ;
         }
 
         public ActionResult OurStory()
