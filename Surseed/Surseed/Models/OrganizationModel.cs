@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Surseed.Models
 {
-    public class OrganisitaionModel
+    public class OrganizationModel
     {
         public class Resistraion
         {
