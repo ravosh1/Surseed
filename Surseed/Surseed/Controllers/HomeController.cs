@@ -15,22 +15,6 @@ namespace Surseed.Controllers
 
 
 
-        public ActionResult SignIn()
-        {
-            return View();
-        }
-
-
-        public ActionResult SignUp()
-        {
-            return View();
-        }
-
-        public ActionResult Forgotpassword()
-        {
-            return View();
-        }
-        
       
     }
 }

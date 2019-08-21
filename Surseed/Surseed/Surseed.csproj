@@ -771,6 +771,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -802,7 +803,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\WorshipCenter\Index.cshtml" />
     <Content Include="Views\NonprofitsAndNGOs\Index.cshtml" />
     <Content Include="Views\Pricing\Index.cshtml" />
@@ -819,11 +819,11 @@
     <Content Include="Views\Organisation\Donors.cshtml" />
     <Content Include="Views\Organisation\MessageBoard.cshtml" />
     <Content Include="Views\Organisation\Reports.cshtml" />
-    <Content Include="Views\Home\SignIn.cshtml" />
-    <Content Include="Views\Home\SignUp.cshtml" />
-    <Content Include="Views\Home\Forgotpassword.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\Details.cshtml" />
+    <Content Include="Views\Organisation\SignIn.cshtml" />
+    <Content Include="Views\Organisation\SignUp.cshtml" />
+    <Content Include="Views\Organisation\Forgotpassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
