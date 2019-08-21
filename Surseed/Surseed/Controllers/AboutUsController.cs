@@ -19,11 +19,7 @@ namespace Surseed.Controllers
             return View();
         }
 
-        public ActionResult Blog()
-        {
-            return View();
-        }
-
+      
         public ActionResult ContactUs()
         {
             return View();
