@@ -819,6 +819,9 @@
     <Content Include="Views\Home\SignIn.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\Forgotpassword.cshtml" />
+    <Content Include="Views\Organisation\Forgotpassword.cshtml" />
+    <Content Include="Views\Organisation\SignIn.cshtml" />
+    <Content Include="Views\Organisation\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -826,7 +829,6 @@
     <Folder Include="img\" />
     <Folder Include="js\" />
     <Folder Include="vendors\" />
-    <Folder Include="Views\OrganisationModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
