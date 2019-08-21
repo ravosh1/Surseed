@@ -196,11 +196,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AboutUsController.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\DonorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NonprofitsAndNGOsController.cs" />
     <Compile Include="Controllers\OrganisationController.cs" />
     <Compile Include="Controllers\PricingController.cs" />
@@ -208,9 +205,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Datalayer.cs" />
+    <Compile Include="Models\Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -771,7 +767,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -803,11 +798,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\WorshipCenter\Index.cshtml" />
     <Content Include="Views\NonprofitsAndNGOs\Index.cshtml" />
     <Content Include="Views\Pricing\Index.cshtml" />
     <Content Include="Views\Donors\Index.cshtml" />
     <Content Include="Views\AboutUs\OurStory.cshtml" />
+    <Content Include="Views\AboutUs\Blog.cshtml" />
     <Content Include="Views\AboutUs\ContactUs.cshtml" />
     <Content Include="Views\Shared\_OrganisationLayout.cshtml" />
     <Content Include="Views\Organisation\Home.cshtml" />
@@ -818,11 +815,9 @@
     <Content Include="Views\Organisation\Donors.cshtml" />
     <Content Include="Views\Organisation\MessageBoard.cshtml" />
     <Content Include="Views\Organisation\Reports.cshtml" />
-    <Content Include="Views\Blog\Index.cshtml" />
-    <Content Include="Views\Blog\Details.cshtml" />
-    <Content Include="Views\Organisation\SignIn.cshtml" />
-    <Content Include="Views\Organisation\SignUp.cshtml" />
-    <Content Include="Views\Organisation\Forgotpassword.cshtml" />
+    <Content Include="Views\Home\SignIn.cshtml" />
+    <Content Include="Views\Home\SignUp.cshtml" />
+    <Content Include="Views\Home\Forgotpassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
