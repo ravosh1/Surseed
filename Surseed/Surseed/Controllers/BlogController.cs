@@ -6,21 +6,15 @@ using System.Web.Mvc;
 
 namespace Surseed.Controllers
 {
-    public class AboutUsController : Controller
+    public class BlogController : Controller
     {
-        // GET: AboutUs
+        // GET: Blog
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult OurStory()
-        {
-            return View();
-        }
-
-      
-        public ActionResult ContactUs()
+        public ActionResult Details()
         {
             return View();
         }
