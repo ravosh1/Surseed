@@ -11,7 +11,7 @@ namespace Surseed.Models
         {
             public int OrganizationId { get; set; }
             public string OrganizationName { get; set; }
-            public string ContactNumber { get; set; }
+            public string OrgContactNumber { get; set; }
             public string Address { get; set; }
 
             public string City { get; set; }
