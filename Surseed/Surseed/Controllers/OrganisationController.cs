@@ -86,9 +86,35 @@ namespace Surseed.Controllers
 
         public ActionResult SignUp()
         {
+            fill_OrganizationUserTypeList();
             return View();
         }
+        [HttpPost]
 
+        public ActionResult SignUp(OrganizationModel.Resistraion model)
+        {
+            if(ModelState.IsValid)
+            {
+                int i = dl.usp_setOrganization(model);
+
+                if (i > 0)
+                {
+                    TempData["msg"] = "You have Sucessfuly registered ..Proceed with logIn";
+                    return RedirectToAction("SignIn");
+                }
+                else
+                {
+                    TempData["SignUpERROR"] = "Oops!! Something Went Wrong.....";
+                }
+            }
+            else
+            {
+                TempData["SignUpERROR"] = "Failed! Please fill all the required field.";
+                fill_OrganizationUserTypeList();
+            }
+          
+            return View();
+        }
         public ActionResult Forgotpassword()
         {
             return View();

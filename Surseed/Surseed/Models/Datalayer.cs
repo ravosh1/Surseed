@@ -123,7 +123,7 @@ namespace Surseed.Models
             try
             {
                 string[] paname = { "@OrganizationId", "@OrganizationName", "@OrganizationContactNumber", "@Address", "@City", "@State", "@Zip", "@EIN#", "@TAXID", "@OrganizationActive", "@OrganizationUserId", "@OrganizationUserTyepId", "@FirstName", "@LastName", "@Gender", "@Age", "@Phone", "@EmailId", "@OrganizationUserActive", "@Password" };
-                string[] pvalue = { p.OrganizationId.ToString(), p.OrganizationName, p.OrgContactNumber, p.Address, p.City, p.State, p.Zip, p.EIN, p.TAXID, p.OrganizationActive.ToString(), p.OrganizationUserId.ToString(), p.OrganizationUserTyepId, p.FirstName, p.LastName, p.Gender, p.Age, p.Phone, p.EmailId, p.OrganizationUserActive.ToString(), p.Password };
+                string[] pvalue = { p.OrganizationId.ToString(), p.OrganizationName, p.OrgContactNumber, p.Address, p.City, p.State, p.Zip, p.EIN, p.TAXID, p.OrganizationActive.ToString(), p.OrganizationUserId.ToString(), p.OrganizationUserTyepId, p.FirstName, p.LastName, p.Gender, p.Age, p.PhoneNo, p.EmailId, p.OrganizationUserActive.ToString(), p.Password };
                 return Int_Process("[USR].[usp_setOrganization]", paname, pvalue);
             }
             catch (Exception ex)

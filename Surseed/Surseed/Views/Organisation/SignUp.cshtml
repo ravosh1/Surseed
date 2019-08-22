@@ -1,4 +1,4 @@
-﻿@model Surseed.Models.OrganisitaionModel.Resistraion
+﻿@model Surseed.Models.OrganizationModel.Resistraion
 
 @{
     ViewBag.Title = "SignUp";
@@ -53,6 +53,7 @@
                 if (TempData["SignUpERROR"] != null && !string.IsNullOrWhiteSpace(TempData["SignUpERROR"].ToString()))
                 {
                     <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <i class="glyphicon glyphicon-ban-circle alert-icon"></i>@TempData["SignUpERROR"]
                     </div>
                 }
@@ -168,7 +169,7 @@
                                 <div class="volunteer-form-style">
                       
                                         @Html.DropDownListFor(model => model.Gender, new List<SelectListItem> { new SelectListItem { Text = "Male", Value = "Male" },
-                                                                            new SelectListItem { Text = "Female", Value = "Female" } }, "Select Gender", new { @class = "formcontrol", @required = "true" })
+                                                                            new SelectListItem { Text = "Female", Value = "Female" } }, "Select Gender", new { @class = "form-control", @required = "true" })
                             
                                 </div>
                             </div>
@@ -180,8 +181,8 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="volunteer-form-style mb-20">
-                                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = "Phone Number", @required = "true", @onkeypress = "return isNumber(event,this);" })
-                                    <span style="color: red">@Html.ValidationMessageFor(model => model.Phone)</span>
+                                    @Html.TextBoxFor(model => model.PhoneNo, new { @class = "form-control", @placeholder = "Phone Number", @required = "true", @onkeypress = "return isNumber(event,this);" })
+                                    <span style="color: red">@Html.ValidationMessageFor(model => model.PhoneNo)</span>
                                 </div>
                             </div>
                             <div class="col-lg-4">

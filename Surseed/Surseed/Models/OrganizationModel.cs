@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -38,12 +39,18 @@ namespace Surseed.Models
 
             public string Age { get; set; }
 
-            public string Phone { get; set; }
-
+            public string PhoneNo { get; set; }
+            [Required]
+            [RegularExpression(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z",
+            ErrorMessage = "Please enter correct email address")]
+            [Display(Name = "Email")]
             public string EmailId { get; set; }
-
+            [Required]
+            [Display(Name = "Password")]
+            [StringLength(int.MaxValue, MinimumLength = 6, ErrorMessage = "Please enter a password minimum 6 characters")]
             public string Password { get; set; }
-
+            [Display(Name = "Confirm Passwrod")]
+            [Compare("Password", ErrorMessage = "Password Do not Match")]
             public string ConfPassword { get; set; }
             public Boolean OrganizationUserActive { get; set; }
         }
