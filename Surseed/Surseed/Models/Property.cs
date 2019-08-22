@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Linq;
 using System.Web;
@@ -119,6 +120,37 @@ namespace Surseed.Models
         public string TypeName { get; set; }
         public string Message { get; set; }
         public string shopname { get; set; }
+    }
+
+    public class Adminchangepassword
+    {
+        [Display(Name = "New Password")]
+        [StringLength(50, MinimumLength = 6, ErrorMessage = "Password length must be greater than 6 Characters!")]
+        // [StringLength(50, maximumLength, ErrorMessage = "Password length must be greater than 6 Characters!")]
+        //[DataType(DataType.Password)]
+        [Required]
+        public string newPass { get; set; }
+
+
+
+        [Display(Name = "Password")]
+        // [Display(Name = "New Password")]
+        [StringLength(50, MinimumLength = 6, ErrorMessage = "Password length must be greater than 6 Characters!")]
+        //[DataType(DataType.Password)]
+        [Required]
+        public string Password { get; set; }
+
+
+        [Required]
+        [StringLength(50, MinimumLength = 6, ErrorMessage = "Password length must be greater than 6 Characters!")]
+        //[DataType(DataType.Password)]
+        [Display(Name = "Confirm New password")]
+        //[Compare("newPass", ErrorMessage = "Password do not match! Retype password !")]
+        public string Confirm_Password { get; set; }
+
+        [Display(Name = "User Id")]
+        public string userId { get; set; }
+
     }
 
 }
