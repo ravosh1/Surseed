@@ -1,7 +1,15 @@
-﻿
+﻿@using System.Data;
+
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_OrganisationLayout.cshtml";
+
+    DataSet ds = (DataSet)ViewBag.donationlist;
+    DataTable dt = new DataTable();
+    if (ds != null && ds.Tables[0].Rows.Count > 0)
+    {
+        dt = ds.Tables[0];
+    }
 }
 
 
@@ -144,52 +152,80 @@
                     <div class="card-body">
                         <h4 class="header-title mb-3">Recent Collection</h4>
                         <div class="table-responsive">
-                            <table class="table mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Donor Name</th>
-                                        <th>Donate Date</th>
-                                        <th>Purpose</th>
-                                        <th>Amount</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Admin v1</td>
-                                        <td>01/01/2019</td>
-                                        <td>Fruit</td>
-                                        <td>$400</td>
-                                        <td><span class="badge badge-info">Received</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Admin v2</td>
-                                        <td>01/07/2019</td>
-                                        <td>Fruit</td>
-                                        <td>$200</td>
-                                        <td><span class="badge badge-info">Received</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Admin v3</td>
-                                        <td>21/04/2019</td>
-                                        <td>Fruit</td>
-                                        <td>$200</td>
-                                        <td><span class="badge badge-info">Received</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Admin v4</td>
-                                        <td>11/05/2019</td>
-                                        <td>Fruit</td>
-                                        <td>$200</td>
-                                        <td><span class="badge badge-info">Received</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            @if (dt.Rows.Count > 0)
+                            {
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Donor Name</th>
+                                            <th>Donate Date</th>
+                                            <th>Purpose</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (System.Data.DataRow dr in dt.Rows)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @if (!string.IsNullOrEmpty(@dr["donationid"].ToString()))
+                                                    {
+                                                        @dr["donationid"].ToString()
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>N/A</span>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (!string.IsNullOrEmpty(@dr["donorname"].ToString()))
+                                                    {
+                                                        @dr["donorname"].ToString()
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>N/A</span>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (!string.IsNullOrEmpty(@dr["donationdate"].ToString()))
+                                                    {
+                                                        @dr["donationdate"].ToString()
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>N/A</span>
+                                                    }
+                                                </td>
+                                                <td>
+                                                @if (!string.IsNullOrEmpty(@dr["donatingfor"].ToString()))
+                                                {
+                                                    @dr["donatingfor"].ToString()
+                                                }
+                                                else
+                                                {
+                                                    <span>N/A</span>
+                                                }
+                                                </td>
+                                                <td>
+                                                    @if (!string.IsNullOrEmpty(@dr["donationamount"].ToString()))
+                                                    {
+                                                        <span>$</span>@dr["donationamount"].ToString()
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>N/A</span>
+                                                    }
+                                                </td>
+                                                <td><span class="badge badge-info">Received</span></td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            }
                         </div>
                     </div>
                 </div>
@@ -202,4 +238,3 @@
 <!-- ============================================================== -->
 <!-- End Page content -->
 <!-- ============================================================== -->
-

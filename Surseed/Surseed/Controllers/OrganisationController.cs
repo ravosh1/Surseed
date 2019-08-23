@@ -65,7 +65,7 @@ namespace Surseed.Controllers
                 //if (ds.Tables[1].Rows[0]["EmailId"].ToString() == model.EmailId)
                 //{
                 HttpCookie loginCookie_Surseed_Organization = Request.Cookies["loginCookie_Surseed_Organization"];
-                loginCookie_Surseed_Organization = new HttpCookie("loginCookie_Surseed_USER");
+                loginCookie_Surseed_Organization = new HttpCookie("loginCookie_Surseed_Organization");
                 loginCookie_Surseed_Organization["OrganizationId"] = ds.Tables[1].Rows[0]["Organizationid"].ToString();
                 loginCookie_Surseed_Organization["Name"] = ds.Tables[1].Rows[0]["OrganizationName"].ToString();
                 // loginCookie_Costoracle_USER["UserType"] = ds.Tables[1].Rows[0]["UserType"].ToString();
@@ -97,6 +97,22 @@ namespace Surseed.Controllers
 
         public ActionResult Home()
         {
+            Property model = new Property();
+            HttpCookie loginCookie_Surseed_Organization = Request.Cookies["loginCookie_Surseed_Organization"];
+            if (loginCookie_Surseed_Organization == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+
+                DataSet ds = dl.usp_getDonation(model);
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    ViewBag.donationlist = ds;
+                }
+            }
+            
             return View();
         }
 
@@ -121,7 +137,7 @@ namespace Surseed.Controllers
             return View();
         }
 
-
+         
         public ActionResult Donors()
         {
             return View();
@@ -138,5 +154,28 @@ namespace Surseed.Controllers
         {
             return View();
         }
+
+
+        public ActionResult UserList()
+        {
+            OrganizationModel.Resistraion model = new Models.OrganizationModel.Resistraion();
+            HttpCookie loginCookie_SurSeed_Admin = Request.Cookies["loginCookie_SurSeed_Admin"];
+            if (loginCookie_SurSeed_Admin == null)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            else
+            {
+               
+                DataSet ds = dl.usp_getOrganization(model);
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    ViewBag.organisationlist = ds;
+                }
+            }
+            return View();
+        }
+
+      
     }
 }

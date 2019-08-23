@@ -259,24 +259,7 @@ namespace Surseed.Models
             }
         }
 
-        public int INSERT_SHOPDETAILS_DETAILS(Property p)
-        {
-            try
-            {
-                string[] paname = { "@id", "@FullName", "@EmailID", "@Contact", "@Subject", "@Message","@store","@charges","@paypalact" };
-                string[] pvalue = { p.id, p.FullName, p.EmailID, p.Contact, p.Subject, p.Message,p.shopname,p.Charges,p.paypalacct };
-                return Int_Process("INSERT_SHOPDETAILS_DETAILS", paname, pvalue);
-
-            }
-
-            catch
-            {
-                throw;
-            }
-
-
-        }
-
+       
 
         public DataSet AdmingetLogin(Property p)
         {
@@ -292,5 +275,33 @@ namespace Surseed.Models
             }
         }
 
+        
+        public DataSet usp_getOrganization(OrganizationModel.Resistraion p)
+        {
+            try
+            {
+                string[] paraname = { "@OrganizationId" };
+                string[] paravalue = { Convert.ToInt32(p.OrganizationId).ToString() };
+                return Ds_Process("USR.usp_getOrganization", paraname, paravalue);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public DataSet usp_getDonation(Property p)
+        {
+            try
+            {
+                string[] paraname = { "@DonationId", "@DonorId", "@OrganizationId" };
+                string[] paravalue = { p.donationid,p.donorid,p.organisationid };
+                return Ds_Process("[TRN].[usp_getDonation]", paraname, paravalue);
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

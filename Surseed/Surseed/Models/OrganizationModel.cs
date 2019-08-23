@@ -25,7 +25,7 @@ namespace Surseed.Models
 
             public Boolean OrganizationActive { get; set; }
 
-            public Int64 OrganizationUserId { get; set; }
+            public string OrganizationUserId { get; set; }
 
             public string OrganizationUserTyepId { get; set; }
 
@@ -53,5 +53,7 @@ namespace Surseed.Models
             public string EmailId { get; set; }
             public string Password { get; set; }
         }
+
+        
     }
 }

@@ -7662,12 +7662,12 @@ if (function(a, b, c) {
                         return this.s = {
                             that: this,
                             dt: d,
-                            print: {
-                                saveStart: -1,
-                                saveLength: -1,
-                                saveScroll: -1,
-                                funcEnd: function() {}
-                            },
+                            //print: {
+                            //    saveStart: -1,
+                            //    saveLength: -1,
+                            //    saveScroll: -1,
+                            //    funcEnd: function() {}
+                            //},
                             buttonCounter: 0,
                             select: {
                                 type: "",
@@ -7686,10 +7686,10 @@ if (function(a, b, c) {
                         }, this.dom = {
                             container: null,
                             table: null,
-                            print: {
-                                hidden: [],
-                                message: null
-                            },
+                            //print: {
+                            //    hidden: [],
+                            //    message: null
+                            //},
                             collection: {
                                 collection: null,
                                 background: null
@@ -8217,17 +8217,17 @@ if (function(a, b, c) {
                                 this.fnSetText(c, "title:" + this.fnGetTitle(b) + "\nmessage:" + b.sPdfMessage + "\ncolWidth:" + this.fnCalcColRatios(b) + "\norientation:" + b.sPdfOrientation + "\nsize:" + b.sPdfSize + "\n--/TableToolsOpts--\n" + this.fnGetTableData(b))
                             }
                         }),
-                        print: a.extend({}, TableTools.buttonBase, {
-                            sInfo: "<h6>Print view</h6><p>Please use your browser's print function to print this table. Press escape when finished.</p>",
-                            sMessage: null,
-                            bShowAll: !0,
-                            sToolTip: "View print view",
-                            sButtonClass: "DTTT_button_print",
-                            sButtonText: "Print",
-                            fnClick: function(a, b) {
-                                this.fnPrint(!0, b)
-                            }
-                        }),
+                        //print: a.extend({}, TableTools.buttonBase, {
+                        //    sInfo: "<h6>Print view</h6><p>Please use your browser's print function to print this table. Press escape when finished.</p>",
+                        //    sMessage: null,
+                        //    bShowAll: !0,
+                        //    sToolTip: "View print view",
+                        //    sButtonClass: "DTTT_button_print",
+                        //    sButtonText: "Print",
+                        //    fnClick: function(a, b) {
+                        //        this.fnPrint(!0, b)
+                        //    }
+                        //}),
                         text: a.extend({}, TableTools.buttonBase),
                         select: a.extend({}, TableTools.buttonBase, {
                             sButtonText: "Select button",
@@ -8248,27 +8248,27 @@ if (function(a, b, c) {
                                 a(b).addClass(this.classes.buttons.disabled)
                             }
                         }),
-                        select_all: a.extend({}, TableTools.buttonBase, {
-                            sButtonText: "Select all",
-                            fnClick: function() {
-                                this.fnSelectAll()
-                            },
-                            fnSelect: function(b) {
-                                this.fnGetSelected().length == this.s.dt.fnRecordsDisplay() ? a(b).addClass(this.classes.buttons.disabled) : a(b).removeClass(this.classes.buttons.disabled)
-                            }
-                        }),
-                        select_none: a.extend({}, TableTools.buttonBase, {
-                            sButtonText: "Deselect all",
-                            fnClick: function() {
-                                this.fnSelectNone()
-                            },
-                            fnSelect: function(b) {
-                                0 !== this.fnGetSelected().length ? a(b).removeClass(this.classes.buttons.disabled) : a(b).addClass(this.classes.buttons.disabled)
-                            },
-                            fnInit: function(b) {
-                                a(b).addClass(this.classes.buttons.disabled)
-                            }
-                        }),
+                        //select_all: a.extend({}, TableTools.buttonBase, {
+                        //    sButtonText: "Select all",
+                        //    fnClick: function() {
+                        //        this.fnSelectAll()
+                        //    },
+                        //    fnSelect: function(b) {
+                        //        this.fnGetSelected().length == this.s.dt.fnRecordsDisplay() ? a(b).addClass(this.classes.buttons.disabled) : a(b).removeClass(this.classes.buttons.disabled)
+                        //    }
+                        //}),
+                        //select_none: a.extend({}, TableTools.buttonBase, {
+                        //    sButtonText: "Deselect all",
+                        //    fnClick: function() {
+                        //        this.fnSelectNone()
+                        //    },
+                        //    fnSelect: function(b) {
+                        //        0 !== this.fnGetSelected().length ? a(b).removeClass(this.classes.buttons.disabled) : a(b).addClass(this.classes.buttons.disabled)
+                        //    },
+                        //    fnInit: function(b) {
+                        //        a(b).addClass(this.classes.buttons.disabled)
+                        //    }
+                        //}),
                         ajax: a.extend({}, TableTools.buttonBase, {
                             sAjaxUrl: "/xhr.php",
                             sButtonText: "Ajax button",
@@ -8321,15 +8321,15 @@ if (function(a, b, c) {
                                 disabled: "DTTT_disabled"
                             }
                         },
-                        select: {
-                            table: "DTTT_selectable",
-                            row: "DTTT_selected selected"
-                        },
-                        print: {
-                            body: "DTTT_Print",
-                            info: "DTTT_print_info",
-                            message: "DTTT_PrintMessage"
-                        }
+                        //select: {
+                        //    table: "DTTT_selectable",
+                        //    row: "DTTT_selected selected"
+                        //},
+                        //print: {
+                        //    body: "DTTT_Print",
+                        //    info: "DTTT_print_info",
+                        //    message: "DTTT_PrintMessage"
+                        //}
                     }, TableTools.classes_themeroller = {
                         container: "DTTT_container ui-buttonset ui-buttonset-multi",
                         buttons: {
@@ -8441,12 +8441,12 @@ if (function(a, b, c) {
                 disabled: "disabled"
             }
         },
-        print: {
-            info: "DTTT_print_info modal"
-        },
-        select: {
-            row: "active"
-        }
+        //print: {
+        //    info: "DTTT_print_info modal"
+        //},
+        //select: {
+        //    row: "active"
+        //}
     }), $.extend(!0, $.fn.DataTable.TableTools.DEFAULTS.oTags, {
         collection: {
             container: "ul",
@@ -9934,7 +9934,7 @@ isAndroid && $("select.form-control").removeClass("form-control").css("width", "
         sDom: "T<'row'<'col-md-6 col-xs-12 'l><'col-md-6 col-xs-12'f>r>t<'row'<'col-md-4 col-xs-12'i><'col-md-8 col-xs-12'p>>",
         tableTools: {
             sSwfPath: "http://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
-            aButtons: ["copy", "csv", "xls", "print", "select_all", "select_none"]
+            aButtons: ["copy", "csv", "xls"]
         }
     })
 });
