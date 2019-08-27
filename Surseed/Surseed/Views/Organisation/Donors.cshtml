@@ -1,7 +1,18 @@
-﻿
+﻿@using System.Data;
+
 @{
     ViewBag.Title = "Donors";
     Layout = "~/Views/Shared/_OrganisationLayout.cshtml";
+    HttpCookie loginCookie_Surseed_Organization = Request.Cookies["loginCookie_Surseed_Organization"];
+    DataSet ds = (DataSet)ViewBag.donationlist;
+    DataTable dt = new DataTable();
+    int count = 0;
+    if (ds != null && ds.Tables[0].Rows.Count > 0)
+    {
+        dt = ds.Tables[0];
+        count = dt.Rows.Count;
+    }
+
 }
 
 <div class="wrapper">
@@ -17,7 +28,7 @@
                             <li class="breadcrumb-item active">Donors</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Welcome John !</h4>
+                    <h4 class="page-title">Welcome @loginCookie_Surseed_Organization["Name"] !</h4>
                 </div>
             </div>
         </div>
@@ -35,7 +46,20 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="collection text-center">
-                                    <h1><span>6</span><span>3</span></h1>
+                                    <h1>
+                                        @{
+                                            int len = count.ToString().Length;
+
+                                            if (len > 0)
+                                            {
+                                                for (int i = 0; i < len; i++)
+                                                {
+                                                    <span>@count.ToString().Substring(i, 1)</span>
+                                                }
+                                            }
+
+                                        }
+                                    </h1>
                                 </div>
                             </div>
                         </div>
@@ -49,174 +73,23 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="card widget-user">
-                                    <div class="card-body">
-                                        <img src="@Url.Content("~/assets/images/users/avatar-3.jpg")" class="img-fluid d-block rounded-circle avatar-md" alt="user">
-                                        <div class="wid-u-info">
-                                            <a href="donor-information.html"><h5 class="mt-3 mb-1">Benito</h5></a>
-                                            <p class="text-muted mb-0">$2500</p>
-                                            <div class="user-position">
-                                                <span class="text-info">Envelope</span>
+                            @foreach (System.Data.DataRow dr in dt.Rows)
+                            {
+                                <div class="col-md-3">
+                                    <div class="card widget-user">
+                                        <div class="card-body">
+                                            <img src="@Url.Content("~/assets/images/users/avatar-3.jpg")" class="img-fluid d-block rounded-circle avatar-md" alt="user">
+                                            <div class="wid-u-info">
+                                                <a href="@Url.Action("donordetails","Organisation",new { id=@dr["donorid"]})"><h5 class="mt-3 mb-1">@dr["donorname"]</h5></a>
+                                                <p class="text-muted mb-0">$@dr["totaldeposit"]</p>
+                                                <div class="user-position">
+                                                    <span class="text-info">Envelope</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card widget-user">
-                                    <div class="card-body">
-                                        <img src="@Url.Content("~/assets/images/users/avatar-2.jpg")" class="img-fluid d-block rounded-circle avatar-md" alt="user">
-                                        <div class="wid-u-info">
-                                            <a href=""><h5 class="mt-3 mb-1">Richard</h5></a>
-                                            <p class="text-muted mb-0">$2500</p>
-                                            <div class="user-position">
-                                                <span class="text-info">Envelope</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card widget-user">
-                                    <div class="card-body">
-                                        <img src="@Url.Content("~/assets/images/users/avatar-3.jpg")" class="img-fluid d-block rounded-circle avatar-md" alt="user">
-                                        <div class="wid-u-info">
-                                            <a href=""><h5 class="mt-3 mb-1">Benito</h5></a>
-                                            <p class="text-muted mb-0">$2500</p>
-                                            <div class="user-position">
-                                                <span class="text-info">Envelope</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card widget-user">
-                                    <div class="card-body">
-                                        <img src="@Url.Content("~/assets/images/users/avatar-2.jpg")" class="img-fluid d-block rounded-circle avatar-md" alt="user">
-                                        <div class="wid-u-info">
-                                            <a href=""><h5 class="mt-3 mb-1">Richard</h5></a>
-                                            <p class="text-muted mb-0">$2500</p>
-                                            <div class="user-position">
-                                                <span class="text-info">Envelope</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card widget-user">
-                                    <div class="card-body">
-                                        <img src="@Url.Content("~/assets/images/users/avatar-3.jpg")" class="img-fluid d-block rounded-circle avatar-md" alt="user">
-                                        <div class="wid-u-info">
-                                            <a href=""><h5 class="mt-3 mb-1">Benito</h5></a>
-                                            <p class="text-muted mb-0">$2500</p>
-                                            <div class="user-position">
-                                                <span class="text-info">Envelope</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card widget-user">
-                                    <div class="card-body">
-                                        <img src="@Url.Content("~/assets/images/users/avatar-2.jpg")" class="img-fluid d-block rounded-circle avatar-md" alt="user">
-                                        <div class="wid-u-info">
-                                            <a href=""><h5 class="mt-3 mb-1">Richard</h5></a>
-                                            <p class="text-muted mb-0">$2500</p>
-                                            <div class="user-position">
-                                                <span class="text-info">Envelope</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card widget-user">
-                                    <div class="card-body">
-                                        <img src="@Url.Content("~/assets/images/users/avatar-3.jpg")" class="img-fluid d-block rounded-circle avatar-md" alt="user">
-                                        <div class="wid-u-info">
-                                            <a href=""><h5 class="mt-3 mb-1">Benito</h5></a>
-                                            <p class="text-muted mb-0">$2500</p>
-                                            <div class="user-position">
-                                                <span class="text-info">Envelope</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card widget-user">
-                                    <div class="card-body">
-                                        <img src="@Url.Content("~/assets/images/users/avatar-2.jpg")" class="img-fluid d-block rounded-circle avatar-md" alt="user">
-                                        <div class="wid-u-info">
-                                            <a href=""><h5 class="mt-3 mb-1">Richard</h5></a>
-                                            <p class="text-muted mb-0">$2500</p>
-                                            <div class="user-position">
-                                                <span class="text-info">Envelope</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card widget-user">
-                                    <div class="card-body">
-                                        <img src="@Url.Content("~/assets/images/users/avatar-3.jpg")" class="img-fluid d-block rounded-circle avatar-md" alt="user">
-                                        <div class="wid-u-info">
-                                            <a href=""><h5 class="mt-3 mb-1">Benito</h5></a>
-                                            <p class="text-muted mb-0">$2500</p>
-                                            <div class="user-position">
-                                                <span class="text-info">Envelope</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card widget-user">
-                                    <div class="card-body">
-                                        <img src="@Url.Content("~/assets/images/users/avatar-2.jpg")" class="img-fluid d-block rounded-circle avatar-md" alt="user">
-                                        <div class="wid-u-info">
-                                            <a href=""><h5 class="mt-3 mb-1">Richard</h5></a>
-                                            <p class="text-muted mb-0">$2500</p>
-                                            <div class="user-position">
-                                                <span class="text-info">Envelope</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card widget-user">
-                                    <div class="card-body">
-                                        <img src="@Url.Content("~/assets/images/users/avatar-3.jpg")" class="img-fluid d-block rounded-circle avatar-md" alt="user">
-                                        <div class="wid-u-info">
-                                            <a href=""><h5 class="mt-3 mb-1">Benito</h5></a>
-                                            <p class="text-muted mb-0">$2500</p>
-                                            <div class="user-position">
-                                                <span class="text-info">Envelope</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card widget-user">
-                                    <div class="card-body">
-                                        <img src="@Url.Content("~/assets/images/users/avatar-2.jpg")" class="img-fluid d-block rounded-circle avatar-md" alt="user">
-                                        <div class="wid-u-info">
-                                            <a href=""><h5 class="mt-3 mb-1">Richard</h5></a>
-                                            <p class="text-muted mb-0">$2500</p>
-                                            <div class="user-position">
-                                                <span class="text-info">Envelope</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -230,5 +103,3 @@
 <!-- ============================================================== -->
 <!-- End Page content -->
 <!-- ============================================================== -->
-
-

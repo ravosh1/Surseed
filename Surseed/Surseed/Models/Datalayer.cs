@@ -290,6 +290,21 @@ namespace Surseed.Models
             }
         }
 
+
+        public DataSet usp_getOrganizationUser(OrganizationModel.Resistraion p)
+        {
+            try
+            {
+                string[] paraname = { "@OrganizationId" };
+                string[] paravalue = { Convert.ToInt32(p.OrganizationId).ToString() };
+                return Ds_Process("USR.usp_getOrganizationUser", paraname, paravalue);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public DataSet usp_getDonation(Property p)
         {
             try
@@ -297,6 +312,20 @@ namespace Surseed.Models
                 string[] paraname = { "@DonationId", "@DonorId", "@OrganizationId" };
                 string[] paravalue = { p.donationid,p.donorid,p.organisationid };
                 return Ds_Process("[TRN].[usp_getDonation]", paraname, paravalue);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public DataSet usp_getDonar(Property p)
+        {
+            try
+            {
+                string[] paraname = { "@DonorId", "@OrganizationId" };
+                string[] paravalue = { p.donorid, p.organisationid };
+                return Ds_Process("[TRN].[usp_getDonar]", paraname, paravalue);
             }
             catch
             {

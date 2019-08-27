@@ -68,6 +68,7 @@ namespace Surseed.Controllers
                 loginCookie_Surseed_Organization = new HttpCookie("loginCookie_Surseed_Organization");
                 loginCookie_Surseed_Organization["OrganizationId"] = ds.Tables[1].Rows[0]["Organizationid"].ToString();
                 loginCookie_Surseed_Organization["Name"] = ds.Tables[1].Rows[0]["OrganizationName"].ToString();
+                loginCookie_Surseed_Organization["OrganizationUserId"] = ds.Tables[1].Rows[0]["OrganizationUserId"].ToString();
                 // loginCookie_Costoracle_USER["UserType"] = ds.Tables[1].Rows[0]["UserType"].ToString();
                 //  loginCookie_Costoracle_USER.Values[];
                 loginCookie_Surseed_Organization.Expires = DateTime.Now.AddHours(1);
@@ -99,7 +100,7 @@ namespace Surseed.Controllers
 
                 if (i > 0)
                 {
-                    TempData["msg"] = "You have Sucessfuly registered ..Proceed with logIn";
+                    TempData["msg"] = "You have Sucessfully registered ..Proceed with logIn";
                     return RedirectToAction("SignIn");
                 }
                 else
@@ -166,7 +167,65 @@ namespace Surseed.Controllers
          
         public ActionResult Donors()
         {
+            Property model = new Property();
+            HttpCookie loginCookie_Surseed_Organization = Request.Cookies["loginCookie_Surseed_Organization"];
+            if (loginCookie_Surseed_Organization == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+
+                DataSet ds = dl.usp_getDonar(model);
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    ViewBag.donationlist = ds;
+                }
+            }
             return View();
+        }
+
+        public ActionResult donordetails(string id="")
+        {
+            Property p = new Property();
+            HttpCookie loginCookie_Surseed_Organization = Request.Cookies["loginCookie_Surseed_Organization"];
+            if (loginCookie_Surseed_Organization == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                p.donorid = id;
+                DataSet ds = dl.usp_getDonar(p);
+                if (ds.Tables.Count > 0)
+                {
+                    p = new Property();
+                    if (loginCookie_Surseed_Organization != null)
+                    {
+                         p.UserID = loginCookie_Surseed_Organization["Name"];
+                    }
+                    else
+                    {
+                        p.UserID = "None";
+                    }
+                    p.donorid = ds.Tables[0].Rows[0]["donorid"].ToString();
+                    p.FullName = ds.Tables[0].Rows[0]["donorname"].ToString();
+                    p.surseedno = ds.Tables[0].Rows[0]["surseednumber"].ToString();
+                    p.EmailID = ds.Tables[0].Rows[0]["email"].ToString();
+                    p.Address = ds.Tables[0].Rows[0]["address"].ToString();
+                    p.totaldeposit = ds.Tables[0].Rows[0]["totaldeposit"].ToString();
+                    p.avgdeposit = ds.Tables[0].Rows[0]["avgdeposit"].ToString();
+                    p.noofdeposit = ds.Tables[0].Rows[0]["noofdeposit"].ToString();
+                    p.totalreimbursement = ds.Tables[0].Rows[0]["totalreimbursements"].ToString();
+                    p.memberno = ds.Tables[0].Rows[0]["membernumber"].ToString();
+                }
+
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    ViewBag.noofdonationlist = ds;
+                }
+            }
+            return View(p);
         }
 
 
@@ -182,7 +241,7 @@ namespace Surseed.Controllers
         }
 
 
-        public ActionResult UserList()
+        public ActionResult List()
         {
             OrganizationModel.Resistraion model = new Models.OrganizationModel.Resistraion();
             HttpCookie loginCookie_SurSeed_Admin = Request.Cookies["loginCookie_SurSeed_Admin"];
@@ -202,6 +261,38 @@ namespace Surseed.Controllers
             return View();
         }
 
-      
+        public ActionResult UserList(int id=0)
+        {
+            OrganizationModel.Resistraion model = new Models.OrganizationModel.Resistraion();
+            HttpCookie loginCookie_SurSeed_Admin = Request.Cookies["loginCookie_SurSeed_Admin"];
+            if (loginCookie_SurSeed_Admin == null)
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            else
+            {
+                model.OrganizationId = id;
+                DataSet ds = dl.usp_getOrganizationUser(model);
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    ViewBag.organisationuserlist = ds;
+                }
+            }
+            return View();
+        }
+
+        public ActionResult orgstatus(string id,string id1)
+        {
+            if (id1 == "False")
+            {
+                dl.Inline_Process("update [USR].[U10_Organization] set active=1 where OrganizationId='" + id+"'");
+            }
+            else
+            {
+                dl.Inline_Process("update [USR].[U10_Organization] set active=0 where OrganizationId='" + id+"'");
+            }
+            return Redirect(Url.Action("List", "Organisation"));
+        }
+
     }
 }

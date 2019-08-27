@@ -36,9 +36,13 @@ namespace Surseed.Models
         public string City { get; set; }
         public string FullName { get; set; }
         public string Message { get; set; }
-        public string Subject { get; set; }
-        public string shopname { get; set; }
+        public string surseedno { get; set; }
+        public string totaldeposit { get; set; }
+        public string avgdeposit { get; set; }
+        public string noofdeposit { get; set; }
+        public string totalreimbursement { get; set; }
         public string UserName { get; set; }
+        public string memberno { get; set; }
     }
 
     public class Adminchangepassword
