@@ -1,0 +1,154 @@
+﻿@model TutorStudent.Models.SliderModel
+
+@{
+    ViewBag.Title = "EditSlider";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="contentwrapper">
+    <!--Content wrapper-->
+
+    <div class="heading">
+        <!--  .heading-->
+
+        <h3>Edit Slider Image </h3>
+
+        <div class="resBtnSearch">
+            <a href="#"><span class="s16 icomoon-icon-search-3"></span></a>
+        </div>
+    </div>
+
+    <!-- Start .row -->
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="panel panel-default">
+                <!-- Start .panel -->
+                <div class="panel-heading">
+                    <h4 class="panel-title">Edit Slider Image </h4>
+                </div>
+                <div class="panel-body pt0 pb0">
+
+                    @if (TempData.Count > 0)
+                    {
+                        if (TempData["ErrorMSG"] != null && !string.IsNullOrWhiteSpace(TempData["ErrorMSG"].ToString()))
+                        {
+                            <div class="alert alert-danger fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="glyphicon glyphicon-ban-circle alert-icon"></i><strong>Oh snap!</strong><br />
+                                @TempData["ErrorMSG"]
+                            </div>
+                        }
+                    }
+
+                    <form class="form-horizontal group-border stripped" method="post" enctype="multipart/form-data" autocomplete="off">
+
+                        @Html.HiddenFor(model => model.SliderId)
+                        @Html.HiddenFor(model => model.Image)
+
+                        <div class="form-group">
+                            <label class="col-lg-12 col-md-12 control-label" for="">Title (max words 45) <sup style="color:red">*</sup></label>
+                            <div class="col-lg-12 col-md-12">
+                                @Html.TextBoxFor(model => model.Title, new { @maxlength = "46", @class = "form-control", @required = "true" })
+                                <span style="color: red">@Html.ValidationMessageFor(model => model.Title)</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="col-lg-12 col-md-12 control-label" for="">Status</label>
+                                    <div class="col-lg-12 col-md-12">
+                                        @Html.DropDownListFor(model => model.Status,
+                                            new List<SelectListItem>
+                                            {
+                                            new SelectListItem { Text="Active", Value="Active"},
+                                             new SelectListItem { Text="InActive", Value="InActive"},
+                                          
+                                             }
+                                            , new { @class = "form-control", @required = "required", }
+                                                )
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        
+
+                        <div class="form-group">
+                            <label class="col-lg-4 col-md-4 control-label" for="">Photo <b>(Banner size: 1920px / 700px)</b> <sup style="color:red">*</sup></label>
+                            <div class="col-lg-6 col-md-6">
+                                <input type="file" name="ImageData" class="form-control" id="ImageData" onchange="showMyImage(this)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12 col-md-12">
+                                <img id="thumbnil" src="@Url.Content(@ViewBag.Image)" style="width: 40%; border: 1px solid orangered;" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-12 col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary mr5 mb10">Submit</button>
+                                <a href="@Url.Action("SliderList", "admin")" class="btn btn-danger mr5 mb10">Cancel</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function checkFileExtension(elem) {
+        var filePath = elem.value;
+
+        if (filePath.indexOf('.') == -1)
+            return false;
+
+        var validExtensions = new Array();
+        var ext = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
+
+        validExtensions[0] = 'jpg';
+        validExtensions[1] = 'jpeg';
+        validExtensions[2] = 'bmp';
+        validExtensions[3] = 'png';
+        validExtensions[4] = 'gif';
+
+        for (var i = 0; i < validExtensions.length; i++) {
+            if (ext == validExtensions[i])
+                return true;
+        }
+
+        alert('The file extension ' + ext.toUpperCase() + ' is not allowed!');
+        elem.value = null;
+        return false;
+    }
+
+    function showMyImage(fileInput) {
+
+        if (checkFileExtension(fileInput) == true) {
+            var files = fileInput.files;
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var imageType = /image.*/;
+                if (!file.type.match(imageType)) {
+                    continue;
+                }
+                var img = document.getElementById("thumbnil");
+                img.file = file;
+                var reader = new FileReader();
+                reader.onload = (function (aImg) {
+                    return function (e) {
+                        aImg.src = e.target.result;
+                    };
+                })(img);
+                reader.readAsDataURL(file);
+            }
+        }
+    }
+
+</script>
+
